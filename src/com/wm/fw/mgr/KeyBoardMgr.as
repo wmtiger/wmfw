@@ -2,13 +2,13 @@ package com.wm.fw.mgr
 {
 	public class KeyBoardMgr
 	{
-		private var _instance:KeyBoardMgr;
+		private static var _instance:KeyBoardMgr;
 		
 		public function KeyBoardMgr()
 		{
 		}
 
-		public function get instance():KeyBoardMgr
+		public static function get instance():KeyBoardMgr
 		{
 			if(_instance == null)
 			{
