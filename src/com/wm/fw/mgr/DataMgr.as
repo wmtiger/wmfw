@@ -1,5 +1,9 @@
 package com.wm.fw.mgr 
 {
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
+	import flash.utils.ByteArray;
 	/**
 	 * ...
 	 * @author wmtiger
@@ -51,6 +55,35 @@ package com.wm.fw.mgr
 		private function isSaveFileExist(idx:int):Boolean
 		{
 			
+		}
+		
+		private function makeFileName(idx:int):String
+		{
+			return 'save/' + idx + '.save';
+		}
+		
+		public function saveFile(idx:int, obj:Object):void
+		{
+			var fileBytes:ByteArray = new ByteArray();
+			fileBytes.writeObject(obj);
+			var file:File = File.applicationStorageDirectory.resolvePath(makeFileName(idx));
+			var fs:FileStream = new FileStream();
+			fs.close();
+			try 
+			{
+				fs.open(file, FileMode.UPDATE);
+				fs.writeBytes(fileBytes);
+				fs.close();
+			}
+			catch (err:Error)
+			{
+				fs.close();
+			}
+		}
+		
+		public function get saveFileMax():int
+		{
+			return 9;
 		}
 		
 	}
