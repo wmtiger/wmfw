@@ -10,7 +10,7 @@ package com.wm.fw.mgr
 	{
 		private static var _instance:CacheMgr;
 		
-		private var _dictBitmapDataBitmapData:Dictionary;
+		private var _dictBitmapData:Dictionary;
 		
 		public function CacheMgr() 
 		{

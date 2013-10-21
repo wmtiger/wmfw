@@ -12,7 +12,7 @@ package com.wm.fw.mgr
 	{
 		private static var _instance:DataMgr;
 		
-		private var _lastSaveFileIndex:int = -1;
+		private var _lastSaveFileIndex:int = 0;
 		
 		private var _actors:Object;
 		
@@ -32,7 +32,7 @@ package com.wm.fw.mgr
 		
 		public function init():void 
 		{
-			_lastSaveFileIndex = -1;
+			_lastSaveFileIndex = 0;
 			loadNormalDatabase();
 			createGameObject();
 		}
@@ -54,7 +54,7 @@ package com.wm.fw.mgr
 		
 		private function isSaveFileExist(idx:int):Boolean
 		{
-			
+			return getSaveFile(idx).exists;
 		}
 		
 		private function makeFileName(idx:int):String
@@ -62,11 +62,17 @@ package com.wm.fw.mgr
 			return 'save/' + idx + '.save';
 		}
 		
-		public function saveFile(idx:int, obj:Object):void
+		private function getSaveFile(idx:int):File
+		{
+			var file:File = File.applicationStorageDirectory.resolvePath(makeFileName(idx));
+			return file;
+		}
+		
+		public function saveGame(idx:int, obj:Object):void
 		{
 			var fileBytes:ByteArray = new ByteArray();
 			fileBytes.writeObject(obj);
-			var file:File = File.applicationStorageDirectory.resolvePath(makeFileName(idx));
+			var file:File = getSaveFile(idx);
 			var fs:FileStream = new FileStream();
 			fs.close();
 			try 
@@ -84,6 +90,11 @@ package com.wm.fw.mgr
 		public function get saveFileMax():int
 		{
 			return 9;
+		}
+		
+		public function loadGame(idx:int):void
+		{
+			
 		}
 		
 	}
