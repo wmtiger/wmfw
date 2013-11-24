@@ -1,6 +1,7 @@
-package com.wm.fw.rpg.audio 
+package com.wm.fw.audio 
 {
-	import com.wm.fw.rpg.utils.AudioUtil;
+	import com.wm.fw.audio.utils.AudioUtil;
+	
 	/**
 	 * ...
 	 * @author wmTiger

@@ -1,4 +1,4 @@
-package com.wm.fw.rpg.audio 
+package com.wm.fw.audio 
 {
 	/**
 	 * ...

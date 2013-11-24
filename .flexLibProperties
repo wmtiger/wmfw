@@ -2,6 +2,9 @@
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.wm.fw.mgr.MsgBoxMgr"/>
+    <classEntry path="com.wm.fw.audio.utils.AudioUtil"/>
+    <classEntry path="com.wm.fw.rpg.RpgGame"/>
+    <classEntry path="com.wm.fw.pzlcard.PzlCardGame"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

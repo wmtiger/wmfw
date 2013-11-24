@@ -1,15 +1,9 @@
-package com.wm.fw.rpg.utils 
+package com.wm.fw.audio.utils
 {
-	/**
-	 * ...
-	 * @author wmTiger
-	 */
-	public class AudioUtil 
+	public class AudioUtil
 	{
-		
-		public function AudioUtil() 
+		public function AudioUtil()
 		{
-			
 		}
 		
 		/**
@@ -138,7 +132,5 @@ package com.wm.fw.rpg.utils
 		{
 			
 		}
-		
 	}
-
 }
