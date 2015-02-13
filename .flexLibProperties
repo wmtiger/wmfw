@@ -5,6 +5,7 @@
     <classEntry path="com.wm.fw.audio.utils.AudioUtil"/>
     <classEntry path="com.wm.fw.rpg.RpgGame"/>
     <classEntry path="com.wm.fw.pzlcard.PzlCardGame"/>
+    <classEntry path="com.fw.view.comps.style.StyleDef"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
