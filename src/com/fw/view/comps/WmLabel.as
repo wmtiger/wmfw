@@ -112,13 +112,13 @@ package com.fw.view.comps
 		}
 		
 		/**
-		 * 创建 SgzLabel
+		 * 创建 WmLabel
 		 * @param parentObj 父类
 		 * @param styleName 文理名字
 		 * @param label 按钮显示文字
 		 * @return
 		 */
-		public static function createSgzLabel(parent:DisplayObjectContainer, wid:int = -1, hei:int = -1, x:Number = 0, y:Number = 0,
+		public static function createWmLabel(parent:DisplayObjectContainer, wid:int = -1, hei:int = -1, x:Number = 0, y:Number = 0,
 											text:String = "", color:uint = 0xffffff, filters:Array = null):WmLabel
 		{
 			var label:WmLabel = new WmLabel();

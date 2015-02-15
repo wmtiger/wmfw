@@ -20,6 +20,8 @@ package com.engine.message{
 	 */
 	public class PvoWriter{
 		
+		public function PvoWriter(){}
+		
 		public static function parse(data:ByteArray):ParamVO{
 			var pvo:ParamVO = new ParamVO();
 			pvo.mergeFrom(data);

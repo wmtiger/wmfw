@@ -28,6 +28,11 @@ package com.engine.message {
 		private var action$field:int;
 
 		private var hasField$0:uint = 0;
+		
+		public function MessageVO()
+		{
+			
+		}
 
 		public function clearAction():void {
 			hasField$0 &= 0xfffffffe;

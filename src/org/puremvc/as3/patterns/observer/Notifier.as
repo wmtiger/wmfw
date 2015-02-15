@@ -34,6 +34,11 @@ package org.puremvc.as3.patterns.observer
 	 */
 	public class Notifier implements INotifier
 	{
+		public function Notifier()
+		{
+			
+		}
+		
 		/**
 		 * Create and send an <code>INotification</code>.
 		 * 

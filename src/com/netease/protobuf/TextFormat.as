@@ -766,6 +766,7 @@ class PrintSetting {
 	public var newLine:uint
 	public var indentChars:String
 	public var simpleFieldSeperator:String
+	public function PrintSetting(){}
 }
 
 const SINGLELINE_MODE:PrintSetting = new PrintSetting

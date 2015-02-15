@@ -1,11 +1,8 @@
 package com.fw
 {
-	import com.fw.AbstractProxy;
-	import com.fw.AppFacade;
-	
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class AbstractCmd extends SimpleCommand
+	public class AbstractCmd extends SimpleCommand 
 	{
 		
 		protected function get appFacade():AppFacade {

@@ -18,6 +18,8 @@ package com.engine.message {
 
 	// @@protoc_insertion_point(class_metadata)
 	public dynamic final class ParamVO extends com.netease.protobuf.Message {
+		
+		public function ParamVO(){}
 		/**
 		 *  @private
 		 */
