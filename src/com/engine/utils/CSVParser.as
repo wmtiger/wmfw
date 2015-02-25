@@ -8,8 +8,14 @@ package com.engine.utils
 		
 		public static function parserToList(txt:String, hasTitle:Boolean = true, enter:String = "\r", sp:String = ";"):Array
 		{
+			if(txt == "")
+				return [];
 			var list:Array = [];
 			var arr:Array = txt.split(enter);
+			if(arr.length <= 1)
+			{
+				arr = txt.split("\n");
+			}
 			var keys:Array = arr[0].split(sp);
 			var len:int = arr.length;
 			var keyLen:int = keys.length;
