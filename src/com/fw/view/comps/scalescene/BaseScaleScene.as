@@ -45,6 +45,8 @@ package com.fw.view.comps.scalescene
 		protected var _maxheight:int=2871;//游戏最大显示高
 		protected var isaddjuggler:Boolean;
 		
+		protected var _viewRect:Rectangle = new Rectangle();
+		
 		public var minscale:Number;
 		
 		public function BaseScaleScene()
@@ -53,7 +55,15 @@ package com.fw.view.comps.scalescene
 			
 			addEventListener(Event.ADDED_TO_STAGE,addstage);
 		}
-
+		
+		protected function setViewRect():void
+		{
+			_viewRect.x = 0;
+			_viewRect.y = 0;
+			_viewRect.width = stage.stageWidth;
+			_viewRect.height = stage.stageHeight;
+		}
+		
 		public function get maxheight():int
 		{
 			return _maxheight;
@@ -79,15 +89,16 @@ package com.fw.view.comps.scalescene
 		
 		public function get viewWidth():Number
 		{
-			return stage.stageWidth;
+			return _viewRect.width;
 		}
 		public function get viewHeight():Number
 		{
-			return stage.stageHeight;
+			return _viewRect.height;
 		}
 
 		private function addstage():void
 		{
+			setViewRect();
 			removeEventListener(Event.ADDED_TO_STAGE,addstage);
 			minscale = Math.max(viewWidth/maxwidth,viewHeight/maxheight);
 			setScenePosition();
@@ -152,7 +163,6 @@ package com.fw.view.comps.scalescene
 					this._currentTouchX =x;
 					this._currentTouchY = y;
 				}
-				
 			}            
 			else if (touches.length == 2)//双指缩放
 			{
@@ -180,7 +190,8 @@ package com.fw.view.comps.scalescene
 				scaleY = scale;
 				
 				x = (currentPosA.x + currentPosB.x)*.5- (previousLocalA.x + previousLocalB.x) *scale*.5;
-				y = (currentPosA.y + currentPosB.y)*.5- (previousLocalA.y + previousLocalB.y) *scale*.5;		
+				y = (currentPosA.y + currentPosB.y)*.5- (previousLocalA.y + previousLocalB.y) *scale*.5;
+				
 				checkXY(false);
 			}
 			
@@ -303,6 +314,7 @@ package com.fw.view.comps.scalescene
 						this.targetTween.animate("x", targetX);
 						this.targetTween.animate("y", targetY);
 						this.targetTween.onComplete = targetTween_onComplete;
+						this.targetTween.onUpdate = targetTween_onUpdate;
 						Starling.juggler.add(this.targetTween);
 					}else
 						moveComplete();
@@ -498,6 +510,10 @@ package com.fw.view.comps.scalescene
 		{
 			targetTween = null;
 			moveComplete();
+		}
+		protected function targetTween_onUpdate():void
+		{
+			checkXY(false);
 		}
 		/**
 		 *地图开始移动 
