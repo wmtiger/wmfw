@@ -232,16 +232,16 @@ package com.fw.view.comps.scalescene
 					{
 						targetX = x - (pixelsPerMS - MINIMUM_VELOCITY) / Math.log(FRICTION);
 						var min:Number = viewWidth-maxwidth*scaleX
-						if(targetX > 0 || targetX<min)
+						if(targetX > _viewRect.x || targetX<min)
 						{
 							durationX = 0;
 							targetX = x;
 							while(Math.abs(pixelsPerMS) > MINIMUM_VELOCITY)
 							{
 								targetX += pixelsPerMS;
-								if(targetX > 0 || targetX<min)
+								if(targetX > _viewRect.x || targetX<min)
 								{
-									targetX = clamp(targetX, min,0);
+									targetX = clamp(targetX, min,_viewRect.x);
 									durationX++;
 									break;
 								}
@@ -277,16 +277,16 @@ package com.fw.view.comps.scalescene
 					{
 						targetY = y - (pixelsPerMS - MINIMUM_VELOCITY) / Math.log(FRICTION);
 						min = viewHeight-maxheight*scaleY
-						if(targetY > 0 || targetY<min)
+						if(targetY > _viewRect.y || targetY<min)
 						{
 							durationY = 0;
 							targetY = y;
 							while(Math.abs(pixelsPerMS) > MINIMUM_VELOCITY)
 							{
 								targetY += pixelsPerMS;
-								if(targetY > 0 || targetY<min)
+								if(targetY > _viewRect.y || targetY<min)
 								{
-									targetY = clamp(targetY, min,0);
+									targetY = clamp(targetY, min, _viewRect.y);
 									durationY++;
 									break;
 								}
