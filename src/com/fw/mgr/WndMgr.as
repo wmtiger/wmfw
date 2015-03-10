@@ -71,13 +71,14 @@ package com.fw.mgr
 		/**
 		 * 关闭窗口
 		 */
-		public function closeWindow(windowCls:Class):void
+		public function closeWindow(windowKey:*):void
 		{
-			var key:String = "" + windowCls;
+			var key:String = "" + windowKey;
+//			trace("closeWindow", key);
 			var w:IGameWnd = getWnd(key);
 			if(w)
 			{
-				w.close();
+				w.closeWnd();
 				removeWnd(key);
 			}
 		}
@@ -85,7 +86,7 @@ package com.fw.mgr
 		/**
 		 * 关闭所有窗口
 		 */
-		public function closeAllWindows(exceptWindowCls:Class = null):void {
+		public function closeAllWindows(exceptWindowCls:* = null):void {
 			var key:String = ""+exceptWindowCls;
 //			var key:String = "[class "+exceptWindowCls+"]";
 			var w:IGameWnd;
@@ -93,12 +94,7 @@ package com.fw.mgr
 			{
 				if (i.indexOf(key) < 0) 
 				{
-					w = _dict[i];
-					if(w)
-					{
-						w.close();
-						removeWnd(key);
-					}
+					closeWindow(i);
 				}
 			}
 		}
@@ -113,6 +109,7 @@ package com.fw.mgr
 		{
 			var wnd:IGameWnd;
 			var key:String = "" + cls;
+//			trace("showWindow",key);
 			if (!hasWnd(key)) 
 			{
 				wnd = new cls();

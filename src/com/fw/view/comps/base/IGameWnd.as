@@ -24,6 +24,7 @@ package com.fw.view.comps.base
 		 * 关闭
 		 */
 		function close():void;
+		function closeWnd():void;
 		
 		/**
 		 * 是否可以回收

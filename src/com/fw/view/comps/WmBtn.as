@@ -30,10 +30,11 @@ package com.fw.view.comps
 		 * @return
 		 */
 		public static function createBtn(parent:DisplayObjectContainer, styleName:String = null,
-				label:String = "", wid:int = 100, hei:int = 86, x:Number = 0, y:Number = 0):WmBtn
+				label:String = "", wid:int = 100, hei:int = 86, x:Number = 0, y:Number = 0, triggerFun:Function = null):WmBtn
 		{
 			var btn:WmBtn = create(styleName ? styleName : StyleDef.BTN_DEF);
 			parent.addChild(btn);
+			triggerFun && btn.triggerThis(triggerFun);
 			btn.label = label;
 			btn.width = wid;
 			btn.height = hei;
@@ -172,6 +173,7 @@ package com.fw.view.comps
 		
 		override public function dispose():void
 		{
+			this.removeEventListeners(Event.TRIGGERED);
 			super.dispose();
 		}
 		
@@ -194,6 +196,10 @@ package com.fw.view.comps
 			return this;
 		}
 		
+		/**
+		 * @param listener	此函数可以带(e:Event), 也可不带
+		 * @return 
+		 */		
 		public function triggerThis(listener:Function):WmBtn
 		{
 			this.removeEventListeners(Event.TRIGGERED);

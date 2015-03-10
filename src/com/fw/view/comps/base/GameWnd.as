@@ -4,6 +4,8 @@ package com.fw.view.comps.base
 	
 	import flash.geom.Point;
 	
+	import avmplus.getQualifiedClassName;
+	
 	import feathers.core.FeathersControl;
 	
 	import lzm.starling.STLConstant;
@@ -267,12 +269,17 @@ package com.fw.view.comps.base
 			}
 			else
 			{
-				closeWnd();
+				WndMgr.intstance.closeWindow("[class " + getQualifiedClassName(this).split("::")[1] + "]");
 			}
 		}
 		
-		protected function closeWnd():void
+		public function closeWnd():void
 		{
+			if(_popMask)
+			{
+//				_popMask.removeEventListener(TouchEvent.TOUCH, onTouchPopMask);
+				_popMask.removeFromParent(true);
+			}
 			_isPlayingToClose = false;
 			Starling.juggler.removeTweens(this);
 			this.removeFromParent(canDispose);
@@ -280,11 +287,6 @@ package com.fw.view.comps.base
 		
 		override public function dispose():void
 		{
-			if(_popMask)
-			{
-//				_popMask.removeEventListener(TouchEvent.TOUCH, onTouchPopMask);
-				_popMask.removeFromParent(true);
-			}
 			super.dispose();
 		}
 	}
