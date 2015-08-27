@@ -134,11 +134,7 @@ package com.fw.view.comps.scalescene
 					this._previousTouchY = this._currentTouchY = y;
 					beginTouch = true;
 				}
-				if(this.targetTween)
-				{
-					Starling.juggler.remove(this.targetTween);
-					this.targetTween = null;
-				}
+				stopTween();
 			}
 			var touches:Vector.<Touch> = event.getTouches(this, TouchPhase.MOVED);
 			if(touches.length>0)
@@ -303,11 +299,7 @@ package com.fw.view.comps.scalescene
 						}
 					}					
 					var duration:Number = Math.max(durationY,durationX);		
-					if(this.targetTween)
-					{
-						Starling.juggler.remove(this.targetTween);
-						this.targetTween = null;
-					}
+					stopTween();
 					if(duration>0)
 					{
 						this.targetTween = new Tween(this, duration / 1000,Transitions.EASE_OUT);
@@ -344,11 +336,7 @@ package com.fw.view.comps.scalescene
 					scale = maxscale
 				else if(scale<minscale)
 					scale = minscale				
-				if(this.targetTween)
-				{
-					Starling.juggler.remove(this.targetTween);
-					this.targetTween = null;
-				}
+				stopTween();
 				moveComplete(false)				
 				scaleX = scale;
 				scaleY = scale;
@@ -357,7 +345,7 @@ package com.fw.view.comps.scalescene
 				checkXY();	
 			}
 		}
-        public function set scale(value:Number):void
+        override public function set scale(value:Number):void
 		{
 			if(scaleX==value)
 				return;
@@ -372,10 +360,6 @@ package com.fw.view.comps.scalescene
 			}
 		}
 		
-		public function get scale():Number
-		{
-			return scaleX;
-		}
 		public function advanceTime(time:Number):void
 		{
 			if(_beginTouch)
@@ -544,14 +528,20 @@ package com.fw.view.comps.scalescene
 		override public function dispose():void {
 			Starling.juggler.remove(this);
 			Starling.current.nativeStage.removeEventListener(MouseEvent.MOUSE_WHEEL, nativeStage_mouseWheelHandler);
+			stopTween();
+			_previousVelocityX = null;
+			_previousVelocityY = null;
+			super.dispose();
+		}
+		
+		private function stopTween():void
+		{
+			// TODO Auto Generated method stub
 			if(this.targetTween)
 			{
 				Starling.juggler.remove(this.targetTween);
 				this.targetTween = null;
 			}
-			_previousVelocityX = null;
-			_previousVelocityY = null;
-			super.dispose();
 		}
 		
 	}
